@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
-# Delete later: import tabulate
 
 # Enter the URL of the site you are scraping
 URL="https://quotes.toscrape.com/"
@@ -22,8 +21,3 @@ for x in table:
     print(num, ": ", quote["lines"], " by ", quote["author"])
     quotes.append(quote)
     num +=1
-
-# Just for checking, delete later
-# header = quotes[0].keys()
-# rows =  [x.values() for x in quotes]
-# print(tabulate.tabulate(rows, header))
