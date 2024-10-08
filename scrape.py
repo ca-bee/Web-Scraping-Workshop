@@ -32,7 +32,7 @@ for link in getNextQuotes:
 fields = ["lines", "author"]
 filename = "quote_list.csv"
 
-# Use "a" to append
+# Use "w" to clear and write to file the first time, then use append afterwards to add to it.
 with open(filename, "w") as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fields)
     writer.writeheader()
