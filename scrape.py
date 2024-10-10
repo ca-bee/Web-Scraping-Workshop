@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 # import os
 import csv
+import pandas
 
 URL = "https://quotes.toscrape.com"
 r = requests.get(URL)
