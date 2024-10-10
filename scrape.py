@@ -30,6 +30,7 @@ if not getNextQuotes:
 else:
     for next in getNextQuotes:
         tailURL = next.find("a")["href"]
+        # print(tailURL)
 
 def repeatRequest(tURL):
     # we concatenate it with our original URL
@@ -69,12 +70,14 @@ while tailURL:
 # Writing to csv files
 fields = ["lines", "author"]
 filename = "quote_list.csv"
+f = open(filename, "w", encoding="utf-8")
 
 # Use "w" to clear and write to file the first time, then use append afterwards to add to it.
-with open(filename, "w", encoding="utf-8") as csvfile:
+with f as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fields)
     writer.writeheader()
     writer.writerows(quotes)
 
+f.close()
 # To delete the csv file afterwards
 #os.remove("quote_list.csv")
