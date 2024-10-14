@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-# import os
+import os
 import csv
-import pandas
+import pandas as pd
 
 URL = "https://quotes.toscrape.com"
 r = requests.get(URL)
@@ -18,8 +18,8 @@ table = soup.findAll("div", attrs={"class": "quote"})
 # num = 1
 for line in table:
     quote = {}
-    quote["author"] = line.find("small", attrs={"class": "author"}).string
-    quote["lines"] = line.find("span", attrs={"class": "text"}).string
+    quote["Author"] = line.find("small", attrs={"class": "author"}).string
+    quote["Lines"] = line.find("span", attrs={"class": "text"}).string
     # print(num, ": ", quote["lines"], " by ", quote["author"])
     quotes.append(quote)
     # num += 1
@@ -46,8 +46,8 @@ def repeatRequest(tURL):
     # num = 1
     for x in table2:
         quote = {}
-        quote["lines"] = x.find("span", attrs={"class": "text"}).string
-        quote["author"] = x.find("small", attrs={"class": "author"}).string
+        quote["Lines"] = x.find("span", attrs={"class": "text"}).string
+        quote["Author"] = x.find("small", attrs={"class": "author"}).string
         # print(num, ": ", quote["lines"], " by ", quote["author"])
         fullQuotes.append(quote)
         # num += 1
@@ -69,7 +69,7 @@ while tailURL:
 
 
 # Writing to csv files
-fields = ["lines", "author"]
+fields = ["Lines", "Author"]
 filename = "quote_list.csv"
 f = open(filename, "w", encoding="utf-8")
 
@@ -80,5 +80,8 @@ with f as csvfile:
     writer.writerows(quotes)
 
 f.close()
+
+df = pd.read_csv("quote_list.csv")
+df.to_html("index.html")
 # To delete the csv file afterwards
 #os.remove("quote_list.csv")
