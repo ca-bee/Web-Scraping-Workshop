@@ -5,13 +5,17 @@ import csv
 import pandas as pd
 
 
-URL="https://quotes.toscrape.com"
-r=requests.get(URL)
+URL = "https://quotes.toscrape.com"
+r = requests.get(URL)
 
 soup = BeautifulSoup(r.content, 'html5lib')
 #print(soup.prettify)
 
-quotes=[]
+
+# prettify gives us the content of the html of the site in an easy-to-read format 
+# print(soup.prettify)
+
+quotes = []
 # Note: find only finds the first div specified; use findAll to get all of them.
 table = soup.findAll("div", attrs={"class": "quote"})
 #num = 1
@@ -32,11 +36,16 @@ else:
         tailURL = next.find("a")["href"]
 
 def repeatRequest(tURL):
+    # we concatenate it with our original URL
     fullURL = URL + tURL
+    # print(fullURL)
+    
     r2 = requests.get(fullURL)
     soup2 = BeautifulSoup(r2.content, "html5lib")
 
     table2 = soup2.findAll("div", attrs={"class": "quote"})
+    fullQuotes = []
+
 
     fullQuotes = []
 
@@ -61,8 +70,8 @@ while tailURL:
     print(tailURL)
     fullQuotes, tailURL = repeatRequest(tailURL)
     quotes.extend(fullQuotes)
-# we concatenate it with our original URL
 
+    
 # Writing to csv files
 fields = ["Lines", "Author"]
 filename = "quote_list.csv"
@@ -73,6 +82,7 @@ with f as csvfile:
     writer = csv.DictWriter(csvfile, fieldnames=fields)
     writer.writeheader()
     writer.writerows(quotes)
+
 
 df = pd.read_csv("quote_list.csv")
 df.to_html("index.html")
