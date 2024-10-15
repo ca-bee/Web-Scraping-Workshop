@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 # import os
+import os
 import csv
 import pandas as pd
 
@@ -88,5 +89,8 @@ df = pd.read_csv("quote_list.csv")
 df.to_html("index.html")
 
 f.close()
+
+df = pd.read_csv("quote_list.csv")
+df.to_html("index.html")
 # To delete the csv file afterwards
 #os.remove("quote_list.csv")
