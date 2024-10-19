@@ -1,3 +1,17 @@
 .dataframe {
         background-color: aliceblue;
 }
+
+th {
+        background-color: #bbced3;
+        padding: 8px;
+        text-align: center;
+}
+
+th, td {
+        border-bottom: 1px solid #bbced3;
+}
+
+tr:nth-child(even) {
+        background-color: #f2f2f2;
+}
