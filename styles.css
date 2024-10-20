@@ -1,11 +1,45 @@
 .dataframe {
-        background-color: aliceblue;
+        background-color: #f0f8ff;
+        margin:5% 10% 5%;
+        border: 2px solid #f0f8ff;
+        padding: 2px;
+
+}
+
+#table-cont {
+        overflow-x: auto;
+}
+
+header{
+        font-family: "DM Sans", sans-serif;
+        text-align: center;
+        background-color: #f2f2f2;
+        padding: 10px;
+        border: 1px solid #cbcbcb;
+}
+
+footer {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border: 1px solid #cbcbcb;
+}
+
+/* Contextual selector */
+footer p {
+        margin-left: 5%;
+        margin-top: 10%;
+        margin-bottom: 5%;
 }
 
 th {
-        background-color: #bbced3;
-        padding: 8px;
+        background-color: #c5ddf2;
+        font-family: "DM Sans", sans-serif;
         text-align: center;
+        padding: 15px;
+}
+
+td {
+        padding: 10px;
 }
 
 th, td {
